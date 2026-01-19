@@ -1,5 +1,6 @@
 name: Django CI/CD
 
+# Trigger workflow on push to main, only when specific folders/files change
 on:
   push:
     branches:
@@ -15,19 +16,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      # 1️⃣ Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      # 2️⃣ Setup Python 3.11 (compatible with TensorFlow 2.14)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      # 3️⃣ Upgrade pip
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
 
-    - name: Run Django checks
-      run: |
-        python manage.py check
+      # 4️⃣ Install project dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 5️⃣ Check Python and TensorFlow version (debug)
+      - name: Check Python & TensorFlow
+        run: |
+          python --version
+          python -c "import tensorflow as tf; print('TensorFlow version:', tf.__version__)"
+
+      # 6️⃣ Run Django system checks
+      - name: Django check
+        run: python manage.py check
+
+      # 7️⃣ Optional: Run tests (if you have Django tests)
+      # - name: Run Django tests
+      #   run: python manage.py test
