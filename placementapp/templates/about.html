@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<main id="main">
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">Empowering Careers Through Data-Driven Placement Prediction</h1>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#">index</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  About
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Intro Single-->
+    <hr>
+    <!-- ======= About Section ======= -->
+    <div class="container mt-0 pt-0">
+      <div class="row">
+        <div class="col-md-12 section-t8 position-relative">
+          <div class="row">
+            <div class="col-md-6 col-lg-5">
+              <img src="{% static 'assets/img/placement.jpg' %}" alt="Placement Prediction" style="height:500px width:500px" class="img-fluid">
+            </div>
+            <div class="col-lg-2 d-none d-lg-block position-relative">
+              <div class="title-vertical d-flex justify-content-start">
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-5 section-md-t3">
+              <div class="title-box-d">
+                <h3 class="title-d">About Our Project</h3>
+              </div>
+              <p class="color-text-a">
+                Our Placement Prediction System leverages machine learning to analyze student profiles and predict placement opportunities with high accuracy. The system considers academic records, skill sets, certifications, and extracurricular involvement to help students understand their chances in the job market.
+              </p>
+              <p class="color-text-a">
+                This platform is designed to bridge the gap between students and recruiters by offering insightful analytics. It aids career counselors and training departments in identifying at-risk students and enhancing employability strategies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main><!-- End #main -->
+
+{% include 'footer.html' %}
+{% endblock %}
