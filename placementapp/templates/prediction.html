@@ -1,0 +1,221 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block body %}
+<style>
+    .intro-single {
+        padding: 9rem 0 3rem;
+    }
+</style>
+<div class="click-closed"></div>
+
+
+    {% if is_output %}
+        <div class="mt-0 intro-single">
+            <div class="container">
+                <h3 class="title-d">Prediction Results</h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Prediction</th>
+                        <td>{{prediction}}</td>
+                    </tr>
+                    <tr>
+                        <th>Max Probability</th>
+                        <td>{{max_prob}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tips</th>
+                        <td>{{skill_improvement_tips}}</td>
+                    </tr>
+                    <tr>
+                        <th>Recommended Company</th>
+                        <td>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Salary Range</th>
+                                    <th>Location</th>
+                                    <th>Job Role</th>
+                                </tr>
+                                {% for i in company_record %}
+                                    <tr>
+                                        <td>{{i.company_name}}</td>
+                                        <td>{{i.average_salary}}</td>
+                                        <td>{{i.location}}</td>
+                                        <td>{{i.job_role}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <a href="/prediction/" class="btn btn-b pull-center">Back to Form</a>
+            </div>
+        </div>
+    {% endif %}
+    
+
+<!-- Prediction Form -->
+<div class="mt-0 intro-single">
+    <div class="container">
+        <div class="title-box-d mt-0">
+            <h3 class="title-d">Prediction Form</h3>
+        </div>
+        <div class="container form">
+            <form class="form-a" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Gender -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group">
+                            <label class="pb-2" for="gender">Gender</label>
+                            <select class="form-control form-control-lg form-control-a" name="gender" id="gender">
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 10th Marks -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group">
+                            <label class="pb-2" for="tenthmarks">10th Marks (%)</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="tenthmarks" id="tenthmarks" placeholder="Enter 10th Marks">
+                        </div>
+                    </div>
+                    <!-- SSC Board -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group">
+                            <label class="pb-2" for="ssc_b">10th Board</label>
+                            <select class="form-control form-control-lg form-control-a" name="ssc_b" id="ssc_b">
+                                <option value="Central">Central</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 12th Marks -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group">
+                            <label class="pb-2" for="twelfthmarks">12th Marks (%)</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="twelfthmarks" id="twelfthmarks" placeholder="Enter 12th Marks">
+                        </div>
+                    </div>
+                    <!-- HSC Board -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="hsc_b">12th Board</label>
+                            <select class="form-control form-control-lg form-control-a" name="hsc_b" id="hsc_b">
+                                <option value="Central">Central</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- HSC Stream -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="hsc_s">12th Stream</label>
+                            <select class="form-control form-control-lg form-control-a" name="hsc_s" id="hsc_s">
+                                <option value="Science">Science</option>
+                                <option value="Commerce">Commerce</option>
+                                <option value="Arts">Arts</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- CGPA -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="cgpa">Degree CGPA (out of 10)</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="cgpa" id="cgpa" placeholder="Enter CGPA">
+                        </div>
+                    </div>
+                    <!-- Degree Type -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="degree_t">Degree Type</label>
+                            <select class="form-control form-control-lg form-control-a" name="degree_t" id="degree_t">
+                                <option value="Sci&Tech">Science & Technology</option>
+                                <option value="Comm&Mgmt">Commerce & Management</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Work Experience -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="internship">Work Experience</label>
+                            <select class="form-control form-control-lg form-control-a" name="work_experience" id="work_experience">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Entrance Test Score -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="etest_p">Entrance Test Score (%)</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="etest_p" id="etest_p" placeholder="Enter Test Score">
+                        </div>
+                    </div>
+                    {% comment %} <!-- Specialisation -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="branch">Specialisation</label>
+                            <select class="form-control form-control-lg form-control-a" name="branch" id="branch">
+                                <option value="Mkt&HR">Marketing & HR</option>
+                                <option value="Mkt&Fin">Marketing & Finance</option>
+                            </select>
+                        </div>
+                    </div> {% endcomment %}
+                    <!-- MBA Marks -->
+                    {% comment %} <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="mba_p">MBA Marks (%)</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="mba_p" id="mba_p" placeholder="Enter MBA Marks">
+                        </div>
+                    </div> {% endcomment %}
+                    <!-- Backlogs -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="backlogs">Backlogs</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="backlogs" id="backlogs" placeholder="Number of Backlogs">
+                        </div>
+                    </div>
+                    <!-- Certification -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="certification">Certification</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="certification" id="certification" placeholder="Certification">
+                        </div>
+                    </div>
+                    <!-- Domain -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="domain">Domain</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="domain" id="domain" placeholder="Domain">
+                        </div>
+                    </div>
+                    <!-- Skills -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="skills">Skills</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="skills" id="skills" placeholder="Skills">
+                        </div>
+                    </div>
+                    <!-- Preferred Company -->
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group mt-3">
+                            <label class="pb-2" for="preferredcompany">Preferred Company</label>
+                            <input type="text" class="form-control form-control-lg form-control-a" name="preferredcompany" id="preferredcompany" placeholder="Preferred Company">
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-b">Predict</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block body %}
+<style>
+    .intro-single {
+        padding: 9rem 0 3rem;
+    }
+</style>
+<div class="click-closed"></div>
+
+<div class="mt-0 intro-single">
+    <div class="container">
+        <div class="title-box-d mt-0">
+
+            <a href="/data-visualization/?data-type=feature" class="btn btn-b pull-center">Placement Feature</a>
+            <a href="/data-visualization/?data-type=heatmap" class="btn btn-a pull-center">Data Heatmap</a>
+            <a href="/data-visualization/?data-type=degree-boxplot" class="btn btn-c pull-center">Degree Box Plot</a>
+            <a href="/data-visualization/?data-type=ssc-hsc" class="btn btn-d pull-center">SSC vs HSC</a>
+            <a href="/data-visualization/?data-type=probability" class="btn btn-e pull-center">Probability Distribution</a>
+
+            {% if img %}
+                <div align="center">
+                    <h3 class="title-d mt-2">Data Visualization Results</h3>
+                    <img src="{% static img %}"/>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10" align="left">
+                        {{msg|safe}}
+                    </div>
+                </div>
+            {% else %}
+                <div align="center">
+                    <h4 class="mt-5">Click the link above to check the data visualization. ☝️</h4>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+    
+
+{% endblock %}

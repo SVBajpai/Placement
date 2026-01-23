@@ -1,0 +1,32 @@
+{% include 'index.html' %}
+{% load static %}
+{% block body %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+
+
+<section class="section-services section-t8">
+    <div class="container mt-3">
+      <br/>
+   
+     <h3 class="mb-5">Message Detail</h3>
+  <p><strong>Name:</strong> {{ message.name }}</p>
+  <p><strong>Email:</strong> {{ message.email }}</p>
+  <p><strong>Subject:</strong> {{ message.subject }}</p>
+  <p><strong>Message:</strong><br>{{ message.message }}</p>
+  <p><strong>Status:</strong> 
+    {% if message.status == 'read' %}
+      <span class="badge bg-success">Read</span>
+    {% else %}
+      <span class="badge bg-danger">Unread</span>
+    {% endif %}
+  </p>
+  <a href="{% url 'admin_messages' %}" class="btn btn-secondary mt-3">← Back to All Messages</a>
+</div>
+
+  </div>
+  
+{% include 'footer.html' %}
+{% include 'tablecdn.html' %}
+{% endblock  %} 

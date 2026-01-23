@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block body %}
+<div class="click-closed"></div>
+
+{% if is_output %}
+<div class="mt-0 intro-single">
+    <div class="container">
+        <h3 class="title-d">Prediction Results Input {% if request.user.is_staff %}({{username}}){% endif %}</h3>
+        <table class="table table-bordered">
+            <tr><th>10th Marks (%)</th><td>{{ tenth_marks }}</td></tr>
+            <tr><th>10th Board</th><td>{{ tenth_board }}</td></tr>
+            <tr><th>12th Marks (%)</th><td>{{ twelfth_marks }}</td></tr>
+            <tr><th>12th Board</th><td>{{ twelfth_board }}</td></tr>
+            <tr><th>12th Stream</th><td>{{ twelfth_stream }}</td></tr>
+            <tr><th>Degree CGPA</th><td>{{ degree_cgpa }}</td></tr>
+            <tr><th>Degree Type</th><td>{{ degree_type }}</td></tr>
+            <tr><th>Work Experience</th><td>{{ work_experience }}</td></tr>
+            <tr><th>Entrance Test Score (%)</th><td>{{ entrance_score }}</td></tr>
+            <tr><th>Backlogs</th><td>{{ backlogs }}</td></tr>
+            <tr><th>Certification</th><td>{{ certification }}</td></tr>
+            <tr><th>Domain</th><td>{{ domain }}</td></tr>
+            <tr><th>Skills</th><td>{{ skills }}</td></tr>
+            <tr><th>Preferred Company</th><td>{{ preferred_company }}</td></tr>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+<div class="">
+    <div class="container">
+        <h3 class="title-d">Prediction Results Output</h3>
+        <table class="table table-bordered">
+            <tr><th>Prediction</th><td>{{ prediction }}</td></tr>
+            <tr><th>Max Probability</th><td>{{ max_prob }}</td></tr>
+            <tr><th>Tips</th><td>{{ skill_improvement_tips }}</td></tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

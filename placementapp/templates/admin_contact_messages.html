@@ -1,0 +1,55 @@
+{% include 'index.html' %}
+{% load static %}
+{% block body %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+
+
+<section class="section-services section-t8">
+    <div class="container mt-3">
+      <br/>
+    <h3>Contact Messages</h3><hr>
+    <div class="table-responsive">
+        <table id="example1" class="display nowrap" style="width: 100%">
+            <thead>
+              <tr>
+                <th>#</th>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Status</th>
+        <th>Date</th>
+       
+                <th>Action</th>
+              </tr>
+            </thead>
+           <tbody>
+      {% for msg in messagess %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ msg.name }}</td>
+        <td>{{ msg.subject }}</td>
+        <td>
+          {% if msg.status == 'unread' %}
+            <span class="badge bg-danger">Unread</span>
+          {% else %}
+            <span class="badge bg-success">Read</span>
+          {% endif %}
+        </td>
+        <td>{{ msg.sent_on }}</td>
+        <td><a href="{% url 'message_detail' msg.id %}" class="btn btn-sm btn-primary">👁 View</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6" class="text-center">No messages found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+          </table>
+    </div>
+
+  </div>
+  
+{% include 'footer.html' %}
+{% include 'tablecdn.html' %}
+{% endblock  %} 

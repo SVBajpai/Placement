@@ -1,0 +1,642 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Prediction</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    
+    body {
+      background: #020419;
+    }
+
+.topbar {
+  width: 100%;
+  padding: 10px 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.topbar .left {
+  font-size: 18px;
+}
+
+.topbar .right a {
+  color: #ffc107;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.topbar .right a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+    
+    .background {
+      width: 100%;
+      height: 100vh;
+      background: url("https://i.postimg.cc/nz6YzMPg/background.jpg") no-repeat;
+      background-size: cover;
+      background-position: center;
+      filter: blur(10px);
+    }
+    
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 75%;
+      min-height: 750px; /* Increased height to fit content */
+     {% comment %} background-image: url("https://i.postimg.cc/nz6YzMPg/background.jpgs"); {% endcomment %}
+      background-image:url("{% static 'images/adminBg1.png' %}");
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    
+    .container .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 58%;
+      height: 100%;
+      background: transparent;
+      padding: 80px;
+      color: #e4e4e4;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+    
+    .content .logo {
+      font-size: 30px;
+    }
+    
+    .text-sci h2 {
+      font-size: 40px;
+      line-height: 1;
+    }
+    
+    .text-sci h2 span {
+      font-size: 25px;
+    }
+    
+    .text-sci p {
+      font-size: 16px;
+      margin: 20px 0;
+    }
+    
+    .social-icons a i {
+      font-size: 22px;
+      color: #e4e4e4;
+      margin-right: 10px;
+      transition: 0.5s ease;
+    }
+    
+    .social-icons a:hover i {
+      transform: scale(1.2);
+    }
+    
+    .container .logreg-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: calc(100% - 58%);
+      background: transparent;
+    }
+    
+    .logreg-box .form-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 100%; /* Ensure form-box takes full height */
+      background: transparent;
+      backdrop-filter: blur(20px);
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      color: #e4e4e4;
+      padding: 20px 0; /* Add padding to top and bottom */
+    }
+    
+    .form-box h2 {
+      font-size: 32px;
+      text-align: center;
+    }
+    
+    .input-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 0 20px;
+    }
+    
+    .input-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .input-box {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      margin: 20px 0;
+    }
+    
+    .input-box input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      border-bottom: 2px solid #e4e4e4;
+      font-size: 16px;
+      color: #e4e4e4;
+      font-weight: 500;
+      padding-right: 30px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .input-box input:focus {
+      border-color: #c4103d;
+    }
+    
+    .input-box label {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #e4e4e4;
+      font-weight: 500;
+      pointer-events: none;
+      transition: 0.5s ease;
+    }
+    
+    .input-box input:focus ~ label,
+    .input-box input:valid ~ label {
+      top: -5px;
+      font-size: 12px;
+      color: #c4103d;
+    }
+    
+    .input-box .icon {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      font-size: 19px;
+      color: #e4e4e4;
+    }
+    
+    /* Custom File Input Styling */
+    .input-box input[type="file"] {
+      padding: 15px 0;
+      font-size: 14px;
+      color: #e4e4e4;
+      cursor: pointer;
+    }
+    
+    .input-box input[type="file"]::-webkit-file-upload-button {
+      background: transparent;
+      border: 2px solid #e4e4e4;
+      color: #e4e4e4;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .input-box input[type="file"]::-webkit-file-upload-button:hover {
+      background: #c4103d;
+      border-color: #c4103d;
+    }
+    
+    .remember-forgot {
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .remember-forgot label input {
+      accent-color: #c4103d;
+      margin-right: 5px;
+    }
+    
+    .remember-forgot a {
+      color: #e4e4e4;
+      text-decoration: none;
+    }
+    
+    .remember-forgot a:hover {
+      color: #c4103d;
+      text-decoration: underline;
+    }
+    
+    .btn {
+      width: 100%;
+      height: 45px;
+      background: linear-gradient(#020419, #c4103d);
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #e4e4e4;
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      transition: background 0.3s ease;
+    }
+    
+    .btn:hover {
+      background: linear-gradient(#c4103d, #020419);
+    }
+    
+    .login-register {
+      font-size: 14.5px;
+      font-weight: 500;
+      text-align: center;
+      margin-top: 25px;
+    }
+    
+    .login-register p a {
+      font-size: 18px;
+      color: #e4e4e4;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    
+    .login-register p a:hover {
+      color: #c4103d;
+      text-decoration: underline;
+    }
+    
+    @media screen and (max-width: 900px) {
+      .container {
+        width: 90%;
+        min-height: auto; /* Allow height to adjust based on content */
+        padding-bottom: 20px;
+      }
+      .container .content {
+        display: none;
+      }
+      .container .logreg-box {
+        width: 100%;
+      }
+      .logreg-box .form-box {
+        border-radius: 10px;
+      }
+      .input-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="left">Placement Prediction Portal</div>
+  <div class="right"><a href="/">Back to Home</a></div>
+</div>
+
+
+  <div class="background"></div>
+  <div class="container">
+    <div class="content">
+      <h2 class="logo"><i class='bx bxl-firebase'></i>Sign Up</h2>
+      <div class="text-sci">
+        <h2>Welcome<br><span>to our new website!</span></h2>
+        <p>We're delighted to have you here. If you need any assistance, feel free to reach out!</p>
+        <div class="social-icons">
+          <a href="#"><i class='bx bxl-linkedin-square'></i></a>
+          <a href="#"><i class='bx bxl-facebook'></i></a>
+          <a href="#"><i class='bx bxl-instagram'></i></a>
+          <a href="#"><i class='bx bxl-twitter'></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="logreg-box">
+      <div class="form-box login">
+        <form  id="signupForm" action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="input-container">
+          <h2>Sign Up</h2>
+          <div class="input-row">
+            <div class="input-box">
+              <span class="icon"><i class='bx bxs-user'></i></span>
+              <input type="text"  id="first_name" name="first_name" required>
+              <label>First Name</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class='bx bxs-user'></i></span>
+              <input type="text"  id="last_name" name="last_name" required>
+              <label>Last Name</label>
+            </div>
+          </div>
+          
+          <div class="input-box">
+            <span class="icon"><i class='bx bxs-envelope'></i></span>
+            <input type="email"  id="email" name="username" required>
+            <label>Email</label>
+          </div>
+          
+          <div class="input-box">
+            <span class="icon"><i class='bx bxs-lock-alt'></i></span>
+            <input type="password" id="password" name="password" required>
+            <label>Password</label>
+          </div>
+          <div class="input-box">
+            <span class="icon"><i class='bx bxs-lock-alt'></i></span>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <label>Confirm Password</label>
+          </div>
+          
+          <div class="input-row">
+            <div class="input-box">
+              <span class="icon"></span>
+              <input type="file"  id="image" name="image" required>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class='bx bxs-phone'></i></span>
+              <input type="text" id="mobile" name="mobile" required>
+              <label>Mobile</label>
+            </div>
+          </div>
+          
+          <div class="input-box">
+            <span class="icon"><i class='bx bxs-map'></i></span>
+            <input type="text" name="address" id="address" required>
+            <label>Address</label>
+          </div>
+
+          <div class="remember-forgot text-center">
+            <a href="/">Back Home</a>
+          </div>
+
+          <button type="button" onclick="submitForm(this)" class="btn">Sign Up</button>
+
+          <div class="login-register">
+            <p>Already have an account? <br><a href="/signin/" class="register-link">Sign In</a></p>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  function showAlertMsg(icon, msg){
+    if(icon == 'error'){
+      title = "Oops...";
+    }
+    else{
+      title = "Great";
+    }
+    console.log(icon);
+    Swal.fire({
+      icon: icon,
+      title: title,
+      text: msg,
+      footer: ''
+    });
+  }
+
+</script>
+<script>
+  // Form validation
+    function submitForm(){
+      const firstName = document.getElementById('first_name').value.trim();
+      const lastName = document.getElementById('last_name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm_password').value;
+      const image = document.getElementById('image').files[0];
+      const mobile = document.getElementById('mobile').value.trim();
+      const address = document.getElementById('address').value.trim();
+      
+      let isValid = true;
+      
+      // Validate first name
+      if (firstName === '') {
+        showError('first_name', 'First name is required');
+        isValid = false;
+      }
+      
+      // Validate last name
+      if (lastName === '') {
+        showError('last_name', 'Last name is required');
+        isValid = false;
+      }
+      
+      // Validate email
+      if (email === '') {
+        showError('email', 'Email is required');
+        isValid = false;
+      } else if (!validateEmail(email)) {
+        showError('email', 'Please enter a valid email address');
+        isValid = false;
+      }
+      
+      // Validate password
+      if (password === '') {
+        showError('password', 'Password is required');
+        isValid = false;
+      } else if (password.length < 8) {
+        showError('password', 'Password must be at least 8 characters long');
+        isValid = false;
+      } 
+      else if (!validatePassword(password)) {
+        showError('password', 'Password must contain at least 1 uppercase letter, 1 number, and 1 special character');
+        isValid = false;
+      }
+      
+      // Validate confirm password
+      if (confirmPassword === '') {
+        showError('confirm_password', 'Please confirm your password');
+        isValid = false;
+      } 
+      else if (password !== confirmPassword) {
+        showError('confirm_password', 'Passwords do not match');
+        isValid = false;
+      }
+      
+      // Validate image
+      if (!image) {
+        showError('image', 'Please upload a profile image');
+        isValid = false;
+      } 
+      else {
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!validImageTypes.includes(image.type)) {
+          showError('image', 'Please upload a valid image (JPEG, PNG, GIF)');
+          isValid = false;
+        }
+      }
+      
+      // Validate mobile
+      if (mobile === '') {
+        showError('mobile', 'Mobile number is required');
+        isValid = false;
+      } 
+      else if (!validateMobile(mobile)) {
+        showError('mobile', 'Please enter a valid mobile number');
+        isValid = false;
+      }
+    
+      // Validate address
+      if (address === '') {
+        showError('address', 'Address is required');
+        isValid = false;
+      }
+    
+      if (isValid) {
+        // Create FormData object
+        const formData = new FormData();
+        formData.append('first_name', firstName);
+        formData.append('last_name', lastName);
+        formData.append('username', email);
+        formData.append('password', password);
+        formData.append('image', image);
+        formData.append('mobile', mobile);
+        formData.append('address', address);
+        formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value);
+
+        // Show loading state
+        const submitBtn = document.querySelector('.btn');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Processing...';
+        submitBtn.disabled = true;
+
+        // Send data to Django backend
+        fetch('/signup/', {  // Update this URL to match your Django URL
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                // Don't set Content-Type when using FormData, 
+                // the browser will set it automatically with the correct boundary
+            },
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                // Registration successful
+                showAlertMsg('success', data.message || 'Registration successful!');
+                // Redirect to login page or dashboard
+                window.location.href = '/signin/';  // Update this URL as needed
+            } else {
+                // Show server-side validation errors
+                if (data.errors) {
+                    Object.keys(data.errors).forEach(field => {
+                        showError(field, data.errors[field].join(' '));
+                    });
+                } else {
+                  showAlertMsg('error', data.message || 'Registration failed. Please try again.');
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showAlertMsg('error', 'An error occurred. Please try again.');
+        })
+        .finally(() => {
+            // Restore button state
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+        });
+      }
+    }
+  
+    // Helper functions
+    function showError(fieldId, message) {
+      showAlertMsg('error', message);
+    }
+  
+  
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+  
+    function validatePassword(password) {
+      // At least 8 characters, 1 uppercase, 1 number, 1 special character
+      const re = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+      return re.test(password);
+    }
+  
+    function validateMobile(mobile) {
+      // Simple mobile validation - adjust according to your needs
+      const re = /^[0-9]{10,15}$/;
+      return re.test(mobile);
+    }
+  
+    document.getElementById('email').addEventListener('blur', function() {
+      const email = this.value.trim();
+      if (email && !validateEmail(email)) {
+        showError('email', 'Please enter a valid email address');
+      }
+    });
+  
+    document.getElementById('password').addEventListener('blur', function() {
+      const password = this.value;
+      if (password && !validatePassword(password)) {
+        showError('password', 'Password must contain at least 1 uppercase letter, 1 number, and 1 special character');
+      }
+    });
+  
+    document.getElementById('confirm_password').addEventListener('blur', function() {
+      const confirmPassword = this.value;
+      const password = document.getElementById('password').value;
+      if (confirmPassword && password !== confirmPassword) {
+        showError('confirm_password', 'Passwords do not match');
+      }
+    });
+  
+    document.getElementById('mobile').addEventListener('blur', function() {
+      const mobile = this.value.trim();
+      if (mobile && !validateMobile(mobile)) {
+        showError('mobile', 'Please enter a valid mobile number');
+      }
+    });
+    
+  // Display messages from Django if any
+  {% for i in messages %}
+    alert("{{i}}");
+  {% endfor %}
+</script>
+</html>

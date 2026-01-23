@@ -1,0 +1,120 @@
+
+<!doctype html>
+{% load static %}
+<html lang="en"> 
+
+ <head> 
+
+  <meta charset="UTF-8"> 
+  <title>Prediction Login Form</title>
+
+
+  <link rel="stylesheet" href="{% static 'style.css' %}"> 
+  <style>
+    .topbar {
+  width: 100%;
+  padding: 10px 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.topbar .left {
+  font-size: 18px;
+}
+
+.topbar .right a {
+  color: #ffc107;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.topbar .right a:hover {
+  text-decoration: underline;
+}
+
+  </style>
+
+ </head> 
+
+  <body> 
+    <!-- partial:index.partial.html --> 
+     <div class="topbar">
+  <div class="left">Placement Prediction Portal</div>
+  <div class="right"><a href="/">Back to Home</a></div>
+</div>
+
+    
+      {% csrf_token %}
+      <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+        <form action="" method="post" enctype="multipart/form" class="signin"> 
+{% csrf_token %}
+            <div class="content"> 
+
+            <h2>User Login</h2> 
+
+            <div class="form"> 
+
+              <div class="inputBox"> 
+
+                <input type="text" id="username" name="username" required> <i>Email Id</i> 
+
+              </div> 
+
+              <div class="inputBox"> 
+
+                <input type="password" id="password" name="password" required> <i>Password</i> 
+
+              </div> 
+
+              <div class="links"> <a href="/signup/">Signup</a> 
+
+              </div> 
+
+              <div class="inputBox"> 
+
+              <input type="submit" value="Login"> 
+
+              </div> 
+
+            </div> 
+
+            </div> 
+
+        </form> 
+      </section> 
+    <!-- partial --> 
+  </body>
+
+  <!-- partial -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    function showAlertMsg(icon, msg){
+      if(icon == 'error'){
+        title = "Oops...";
+      }
+      else{
+        title = "Great";
+      }
+      console.log(icon);
+      Swal.fire({
+        icon: icon,
+        title: title,
+        text: msg,
+        footer: ''
+      });
+    }
+
+
+    {% for i in messages %}
+      showAlertMsg('{{i.tags}}', "{{i}}");
+    {% endfor %}
+  </script>
+</html>
